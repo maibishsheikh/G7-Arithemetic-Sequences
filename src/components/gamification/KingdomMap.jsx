@@ -24,7 +24,7 @@ export default function KingdomMap({ districtScores, districtCorrect, currentDis
             tabIndex={isUnlocked ? 0 : -1}
           >
             <div className="district-icon-wrap">
-              <span className="district-icon">{isUnlocked ? dist.icon : '🔒'}</span>
+              <span className="district-icon">{isUnlocked ? (dist.emoji || dist.icon || '🚀') : '🔒'}</span>
             </div>
 
             <div className="district-info">

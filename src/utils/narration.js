@@ -130,3 +130,16 @@ export function reflectCompleteNarration() {
     cheer("Mission accomplished, Cadet! You have achieved complete Mastery of Arithmetic Sequences!"),
   ];
 }
+
+export function bossStartNarration() {
+  return [
+    instruct("Warning: Anomaly Boss detected! Defeat the boss to restore signal integrity!"),
+  ];
+}
+
+export function bossWinNarration() {
+  return [
+    cheer("Anomaly resolved and Boss defeated! Outstanding mission flying, Cadet!"),
+  ];
+}
+
