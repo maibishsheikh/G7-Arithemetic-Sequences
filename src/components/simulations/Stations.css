@@ -1,6 +1,9 @@
-/* src/components/simulations/Stations.css */
+/* src/components/simulations/Stations.css
+   ProgressionQuest Simulation Stations Styling
+   Grade 7 · Arithmetic Sequences — Mission Control Theme
+*/
 
-/* ─── Main Station Container (Single Viewport Fit) ───────────────────────── */
+/* ─── Main Station Container ─────────────────────────────────────────────── */
 .station-wrap {
   flex: 1;
   min-height: 0;
@@ -8,12 +11,13 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: clamp(6px, 1vh, 10px) clamp(8px, 1.2vw, 16px);
-  gap: clamp(4px, 0.8vh, 8px);
+  padding: clamp(6px, 1vh, 12px) clamp(8px, 1.2vw, 16px);
+  gap: clamp(6px, 1vh, 12px);
   position: relative;
   width: 100%;
   box-sizing: border-box;
-  overflow: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 /* ─── Station Header & Badges ───────────────────────────────────────────── */
@@ -21,583 +25,339 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   gap: 8px;
   flex-shrink: 0;
   width: 100%;
   box-sizing: border-box;
-  padding: 0 2px;
+  padding: 4px 6px;
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(56, 189, 248, 0.2);
+  border-radius: 12px;
 }
 
 .station-title {
-  color: #fcd34d;
+  color: #38bdf8;
   font-family: var(--font-display);
-  font-weight: 900;
+  font-weight: 800;
   font-size: clamp(1.1rem, 1.35vw, 1.35rem);
   line-height: 1.2;
   margin: 0;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
-}
-
-.station-target-box {
-  background: rgba(245, 158, 11, 0.22);
-  border: 2px solid #f59e0b;
-  border-radius: 12px;
-  padding: 3px 12px;
   display: flex;
   align-items: center;
   gap: 8px;
-  flex-shrink: 0;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+}
+
+.station-round-badge {
+  background: rgba(129, 140, 248, 0.2);
+  border: 1.5px solid #818cf8;
+  border-radius: 999px;
+  padding: 3px 12px;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #c7d2fe;
+}
+
+.station-target-box {
+  background: rgba(251, 191, 36, 0.15);
+  border: 1.5px solid #fbbf24;
+  border-radius: 10px;
+  padding: 4px 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 0 12px rgba(251, 191, 36, 0.2);
 }
 
 .station-target-label {
-  font-family: var(--font-body);
-  font-size: clamp(0.8rem, 0.9vw, 0.9rem);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
   font-weight: 800;
   color: #cbd5e1;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
 }
 
 .station-target-num {
-  color: #ffd54f;
-  font-family: var(--font-display);
+  color: #fbbf24;
+  font-family: var(--font-mono);
   font-weight: 900;
-  font-size: clamp(1.15rem, 1.5vw, 1.45rem);
-  line-height: 1;
-  text-shadow: 0 0 10px rgba(255, 213, 79, 0.5);
+  font-size: 1.15rem;
 }
 
 /* ─── 2-Column Responsive Grid ──────────────────────────────────────────── */
 .station-grid-2col {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: clamp(8px, 1.2vw, 14px);
+  gap: clamp(10px, 1.5vw, 18px);
   align-items: stretch;
   flex: 1;
   min-height: 0;
-  max-height: 100%;
   width: 100%;
   box-sizing: border-box;
-  overflow: hidden;
+}
+
+@media (max-width: 820px) {
+  .station-grid-2col {
+    grid-template-columns: 1fr;
+  }
 }
 
 .station-col-left,
 .station-col-right {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  gap: clamp(4px, 0.8vh, 8px);
-  width: 100%;
-  min-height: 0;
-  max-height: 100%;
-  box-sizing: border-box;
-  overflow: hidden;
-}
-
-/* ─── Station A: Interactive Coin Supply Grid ────────────────────────────── */
-.coin-supply-list {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 6px;
+  justify-content: flex-start;
+  gap: 10px;
   width: 100%;
   box-sizing: border-box;
 }
 
-.coin-supply-item {
+/* ─── Interactive Controls Panel ────────────────────────────────────────── */
+.control-card {
+  background: rgba(15, 23, 42, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 14px;
+  padding: 12px 14px;
   display: flex;
-  align-items: center;
-  gap: 5px;
-  background: rgba(255, 255, 255, 0.08);
-  padding: 3px 6px;
-  border-radius: 10px;
-  border: 1.5px solid rgba(255, 255, 255, 0.16);
-  width: 100%;
-  box-sizing: border-box;
+  flex-direction: column;
+  gap: 8px;
 }
 
-.coin-btn {
-  flex: 1;
-  min-width: 0;
+.control-label-row {
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  gap: 5px;
+  align-items: center;
+}
+
+.control-title {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.control-value-badge {
+  font-family: var(--font-mono);
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #38bdf8;
+  background: rgba(56, 189, 248, 0.15);
+  border: 1px solid rgba(56, 189, 248, 0.35);
+  padding: 2px 10px;
   border-radius: 8px;
-  padding: 5px 8px;
-  min-height: 38px;
+}
+
+.control-btn-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.control-step-btn {
+  background: rgba(30, 41, 59, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #f8fafc;
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  font-size: 1.2rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
-  border: 1.5px solid rgba(255, 255, 255, 0.35);
-  transition: var(--transition-fast, 0.18s ease);
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.35);
-  color: #ffffff;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
-  box-sizing: border-box;
+  transition: all 0.15s ease;
   user-select: none;
 }
 
-.coin-btn:hover:not(:disabled) {
-  transform: translateY(-1px);
-  filter: brightness(1.18);
-  box-shadow: 0 5px 14px rgba(0, 0, 0, 0.45);
+.control-step-btn:hover:not(:disabled) {
+  background: rgba(56, 189, 248, 0.25);
+  border-color: #38bdf8;
+  color: #38bdf8;
+  transform: scale(1.05);
 }
 
-.coin-btn:active:not(:disabled) {
-  transform: translateY(0);
+.control-slider {
+  flex: 1;
+  accent-color: #38bdf8;
+  height: 8px;
+  cursor: pointer;
 }
 
-.coin-btn:disabled {
-  opacity: 0.45;
-  cursor: not-allowed;
+/* ─── Rocket Visual Simulation Box ──────────────────────────────────────── */
+.rocket-sim-viewport {
+  position: relative;
+  width: 100%;
+  height: 180px;
+  background: radial-gradient(ellipse at bottom, #1e1b4b 0%, #090d16 100%);
+  border: 1.5px solid rgba(56, 189, 248, 0.3);
+  border-radius: 14px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.coin-btn-info {
+.rocket-stars-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: radial-gradient(2px 2px at 20px 30px, #ffffff, rgba(0,0,0,0)),
+                    radial-gradient(2px 2px at 80px 120px, #38bdf8, rgba(0,0,0,0)),
+                    radial-gradient(1px 1px at 160px 40px, #fbbf24, rgba(0,0,0,0)),
+                    radial-gradient(2px 2px at 260px 90px, #ffffff, rgba(0,0,0,0)),
+                    radial-gradient(1px 1px at 340px 140px, #a78bfa, rgba(0,0,0,0));
+  background-repeat: repeat;
+  background-size: 400px 200px;
+  opacity: 0.6;
+}
+
+.rocket-vessel {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.rocket-icon {
+  font-size: 3.2rem;
+  filter: drop-shadow(0 0 16px rgba(56, 189, 248, 0.7));
+  display: inline-block;
+  transform-origin: center;
+}
+
+.rocket-flame {
+  font-size: 1.8rem;
+  margin-top: -12px;
+  animation: flameFlicker 0.25s infinite alternate;
+}
+
+@keyframes flameFlicker {
+  0% { transform: scale(0.9) translateY(0); opacity: 0.8; }
+  100% { transform: scale(1.15) translateY(2px); opacity: 1; }
+}
+
+/* ─── Mission Control Console Step Tracker ──────────────────────────────── */
+.console-stepper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  background: rgba(15, 23, 42, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 8px 12px;
+}
+
+.console-step-indicator {
   display: flex;
   align-items: center;
   gap: 6px;
-  min-width: 0;
-}
-
-.coin-icon {
-  font-size: 1.25rem;
-  line-height: 1;
-  flex-shrink: 0;
-}
-
-.coin-label {
-  font-family: var(--font-display);
-  font-size: clamp(0.88rem, 1vw, 1rem);
-  font-weight: 900;
-  color: #ffffff;
-  white-space: nowrap;
-}
-
-.coin-count-pill {
-  font-family: var(--font-display);
-  font-size: clamp(0.85rem, 0.95vw, 0.98rem);
-  font-weight: 900;
-  background: rgba(0, 0, 0, 0.55);
-  padding: 2px 7px;
-  border-radius: var(--radius-pill, 9999px);
-  border: 1.5px solid rgba(255, 255, 255, 0.4);
-  color: #ffffff;
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-
-.coin-minus {
-  width: 36px;
-  height: 36px;
-  min-width: 36px;
-  border-radius: 8px;
-  background: rgba(239, 68, 68, 0.2);
-  border: 1.5px solid rgba(239, 68, 68, 0.55);
-  color: #ffffff;
-  font-size: 1.25rem;
-  font-weight: 900;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #64748b;
   cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.console-step-indicator.active {
+  color: #38bdf8;
+  background: rgba(56, 189, 248, 0.15);
+}
+
+.console-step-indicator.completed {
+  color: #10b981;
+}
+
+.console-step-indicator .step-num {
+  width: 22px;
+  height: 22px;
+  border-radius: 999px;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: var(--transition-fast, 0.18s ease);
-  flex-shrink: 0;
+  font-size: 0.75rem;
+  border: 1.5px solid currentColor;
 }
 
-.coin-minus:hover:not(:disabled) {
-  background: rgba(239, 68, 68, 0.6);
-  border-color: rgba(239, 68, 68, 0.9);
-  color: #ffffff;
-}
-
-.coin-minus:disabled {
-  opacity: 0.25;
-  cursor: not-allowed;
-}
-
-/* ─── Running Calculation & Money Tray Bar ───────────────────────────────── */
-.running-ratio-bar {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  background: rgba(12, 10, 32, 0.9);
-  padding: 8px 12px;
-  border-radius: 12px;
-  border: 2px solid rgba(255, 255, 255, 0.22);
-  text-align: center;
-  width: 100%;
-  box-sizing: border-box;
-  flex-shrink: 0;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
-}
-
-.running-ratio-text {
-  font-family: var(--font-display);
-  font-size: clamp(0.95rem, 1.15vw, 1.18rem);
-  font-weight: 900;
-  color: #fcd34d;
-  line-height: 1.3;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.running-ratio-text.exact {
-  color: #4ade80;
-  text-shadow: 0 0 10px rgba(74, 222, 128, 0.6);
-}
-
-.running-ratio-text.over {
-  color: #f87171;
-  text-shadow: 0 0 10px rgba(248, 113, 113, 0.6);
-}
-
-.money-tray-display {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  box-sizing: border-box;
-  background: rgba(10, 8, 30, 0.75);
-  border: 2px dashed rgba(255, 255, 255, 0.28);
-  border-radius: 12px;
-  padding: 6px 10px;
-  flex: 1;
-  min-height: 0;
-  overflow-y: auto;
-}
-
-.tray-coins-row {
+/* ─── Anomaly Diagnostic Card ───────────────────────────────────────────── */
+.anomaly-checkpoint-grid {
   display: flex;
   flex-wrap: wrap;
-  gap: 6px;
-  justify-content: center;
-  align-items: center;
-}
-
-.tray-coin-chip {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  background: rgba(255, 255, 255, 0.18);
-  border: 1.5px solid rgba(255, 255, 255, 0.45);
-  border-radius: 14px;
-  padding: 3px 10px;
-  font-family: var(--font-display);
-  font-weight: 900;
-  font-size: 0.92rem;
-  color: #ffffff;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-}
-
-/* ─── Station B: Supermarket Scanner & Cart ─────────────────────────────── */
-.market-chips-pool {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 6px;
-  width: 100%;
-  box-sizing: border-box;
-}
-
-.market-item-card {
-  padding: 6px 10px;
-  border-radius: 10px;
-  font-family: var(--font-display);
-  font-size: clamp(0.88rem, 1vw, 1.02rem);
-  font-weight: 800;
-  cursor: pointer;
-  transition: var(--transition-fast, 0.18s ease);
-  border: 1.5px solid rgba(255, 255, 255, 0.25);
-  min-height: 38px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 6px;
-  user-select: none;
-  background: rgba(30, 25, 75, 0.85);
-  color: #ffffff;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
-}
-
-.market-item-card:hover:not(:disabled) {
-  transform: translateY(-1px);
-  border-color: #fbbf24;
-  background: rgba(251, 191, 36, 0.22);
-}
-
-.market-item-card.in-cart {
-  border-color: #4ade80;
-  background: #166534;
-  color: #ffffff;
-  font-weight: 900;
-  box-shadow: 0 0 12px rgba(74, 222, 128, 0.4);
-}
-
-.market-receipt-box {
-  background: #ffffff;
-  color: #09090b;
-  border: 2px solid #cbd5e1;
-  border-radius: 10px;
-  padding: 8px 12px;
-  font-family: 'Courier New', Courier, monospace;
-  font-size: 0.9rem;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
-  width: 100%;
-  flex: 1;
-  min-height: 0;
-  overflow-y: auto;
-  box-sizing: border-box;
-}
-
-.market-receipt-header {
-  text-align: center;
-  font-weight: 900;
-  border-bottom: 2px dashed #94a3b8;
-  padding-bottom: 3px;
-  font-size: 0.85rem;
-  color: #18181b;
-}
-
-.market-receipt-row {
-  display: flex;
-  justify-content: space-between;
-  color: #18181b;
-  font-weight: 700;
-}
-
-.market-receipt-total {
-  border-top: 2px dashed #94a3b8;
-  padding-top: 4px;
-  font-weight: 900;
-  font-size: 1rem;
-  color: #09090b;
-  display: flex;
-  justify-content: space-between;
-  margin-top: auto;
-}
-
-/* ─── Station C: Live Change-Making Till & Step Ladder ───────────────────── */
-.till-drawer-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 6px;
-  width: 100%;
-  box-sizing: border-box;
-}
-
-.till-coin-btn {
-  padding: 6px 4px;
-  border-radius: 10px;
-  font-family: var(--font-display);
-  font-size: 0.98rem;
-  font-weight: 900;
-  cursor: pointer;
-  transition: var(--transition-fast, 0.18s ease);
-  min-height: 42px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 2px;
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.35);
-}
-
-.till-coin-btn:hover:not(:disabled) {
-  transform: translateY(-1px);
-  filter: brightness(1.18);
-}
-
-.change-ladder-box {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  background: rgba(15, 12, 38, 0.9);
-  padding: 6px 12px;
-  border-radius: 12px;
-  border: 2px solid rgba(245, 158, 11, 0.55);
-  width: 100%;
-  box-sizing: border-box;
-  flex-shrink: 0;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.35);
-}
-
-.change-ladder-step {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  font-family: var(--font-display);
-  font-size: 0.95rem;
-  font-weight: 800;
-  color: #ffffff;
-}
-
-/* ─── Station D: Spot Error Station ─────────────────────────────────────── */
-.spot-steps-list {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  width: 100%;
-  box-sizing: border-box;
-}
-
-.spot-step-card {
-  padding: 8px 12px;
-  border-radius: 10px;
-  font-family: var(--font-display);
-  font-size: 0.98rem;
-  font-weight: 800;
-  cursor: pointer;
-  transition: var(--transition-fast, 0.18s ease);
-  border: 2px solid rgba(255, 255, 255, 0.22);
-  background: rgba(30, 25, 70, 0.85);
-  color: #ffffff;
-  min-height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
-  gap: 6px;
-  width: 100%;
-  box-sizing: border-box;
-}
-
-.spot-step-card:hover:not(.selected-error) {
-  border-color: #fbbf24;
-  transform: translateY(-1px);
-  background: rgba(251, 191, 36, 0.2);
-}
-
-.spot-step-card.selected-error {
-  background: rgba(34, 197, 94, 0.35);
-  border-color: #4ade80;
-  box-shadow: 0 0 12px rgba(74, 222, 128, 0.45);
-}
-
-.spot-step-card.selected-correct-step {
-  border-color: #f87171;
-  background: rgba(239, 68, 68, 0.35);
-}
-
-/* ─── Guide / Help Cards ────────────────────────────────────────────────── */
-.station-guide-card {
-  background: rgba(255, 255, 255, 0.08);
-  border: 1.5px dashed rgba(255, 255, 255, 0.25);
-  border-radius: 12px;
-  padding: 8px 14px;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 4px;
-  width: 100%;
-  box-sizing: border-box;
-}
-
-.station-guide-text {
-  font-family: var(--font-body);
-  font-size: clamp(0.92rem, 1.05vw, 1.05rem);
-  color: #f8fafc;
-  line-height: 1.45;
-  font-weight: 700;
-  margin: 0;
-}
-
-/* ─── Success / Completion Panel ────────────────────────────────────────── */
-.station-success {
-  background: rgba(18, 16, 52, 0.96);
-  border: 2px solid rgba(34, 197, 94, 0.7);
-  border-radius: 14px;
-  padding: 10px 14px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 6px;
-  text-align: center;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
-  width: 100%;
-  box-sizing: border-box;
-}
-
-.station-success .success-icon {
-  font-size: 1.5rem;
-  line-height: 1;
-}
-
-.station-success-msg {
-  font-family: var(--font-body);
-  font-size: clamp(0.92rem, 1.08vw, 1.08rem);
-  color: #ffffff;
-  line-height: 1.35;
-  font-weight: 800;
-  margin: 0;
-}
-
-.station-success-actions {
-  display: flex;
   gap: 8px;
-  flex-wrap: nowrap;
   justify-content: center;
-  width: 100%;
-  box-sizing: border-box;
+  margin: 10px 0;
 }
 
-.station-success-actions button {
-  padding: 6px 16px;
-  font-size: clamp(0.9rem, 1vw, 1rem);
-  font-weight: 800;
-  min-height: 38px;
-  flex: 1 1 auto;
-}
-
-/* ─── Station Action Buttons Row ────────────────────────────────────────── */
-.station-actions {
+.anomaly-chip {
   display: flex;
-  gap: 6px;
-  flex-wrap: nowrap;
+  flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
-  margin-top: auto;
-  width: 100%;
-  box-sizing: border-box;
-  flex-shrink: 0;
-}
-
-.station-actions button {
   padding: 6px 14px;
-  min-height: 38px;
-  flex: 1 1 auto;
-  font-size: clamp(0.9rem, 1vw, 1rem);
-  font-weight: 800;
-  border-radius: 12px;
+  border-radius: 10px;
+  border: 1.5px solid rgba(255, 255, 255, 0.2);
+  background: rgba(30, 41, 59, 0.8);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-width: 60px;
 }
 
-/* ─── Responsive Media Queries ──────────────────────────────────────────── */
-@media (max-width: 768px) {
-  .station-wrap {
-    padding: 4px 6px;
-    gap: 4px;
-  }
-  .station-grid-2col {
-    grid-template-columns: 1fr;
-    gap: 6px;
-    overflow-y: auto;
-  }
-  .coin-supply-list {
-    grid-template-columns: 1fr 1fr;
-  }
-  .station-actions button,
-  .station-success-actions button {
-    min-height: 34px;
-    padding: 4px 10px;
-    font-size: 0.86rem;
-  }
+.anomaly-chip:hover {
+  border-color: #38bdf8;
+  transform: translateY(-2px);
+}
+
+.anomaly-chip.selected {
+  border-color: #f43f5e;
+  background: rgba(244, 63, 94, 0.2);
+  box-shadow: 0 0 16px rgba(244, 63, 94, 0.4);
+}
+
+.anomaly-chip.fixed {
+  border-color: #10b981;
+  background: rgba(16, 185, 129, 0.2);
+  box-shadow: 0 0 16px rgba(16, 185, 129, 0.4);
+}
+
+/* ─── Mission Simulator Sandbox Summary Panel ───────────────────────────── */
+.sandbox-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 8px;
+  width: 100%;
+  margin-top: 8px;
+}
+
+.sandbox-stat-card {
+  background: rgba(15, 23, 42, 0.75);
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  border-radius: 12px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.sandbox-stat-label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: #94a3b8;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.sandbox-stat-val {
+  font-family: var(--font-mono);
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #f8fafc;
 }
