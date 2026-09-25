@@ -1,18 +1,40 @@
 // src/components/shared/FloatingNumbers.jsx
+// Ambient floating telemetry and progression symbols
 import React, { useMemo } from 'react';
 import './FloatingNumbers.css';
 
-const MONEY_SYMBOLS = ['🪙', '💵', '💰', '🏷️', '🐷', '💲', '🛒', '🛍️', '💱', '✨', '🍎', '🧁', '⭐', '5¢', '10¢', '20¢', '50¢', '$1', '$2', '$5'];
+const TELEMETRY_SYMBOLS = [
+  'Tₙ',
+  'a + (n−1)d',
+  '📡',
+  '🚀',
+  'd = +8',
+  'd = −5',
+  '🛰️',
+  'Sₙ',
+  'T₁',
+  'T₆',
+  'T₁₀',
+  '⭐',
+  '⚡',
+  '📊',
+  '🛸',
+  'Δ',
+  'Σ',
+  '🤖',
+  '+d',
+  '−d',
+];
 
 export default function FloatingNumbers() {
   const items = useMemo(() => {
     return Array.from({ length: 18 }, (_, i) => ({
       id: i,
-      symbol: MONEY_SYMBOLS[i % MONEY_SYMBOLS.length],
+      symbol: TELEMETRY_SYMBOLS[i % TELEMETRY_SYMBOLS.length],
       left: `${(i * 5.6 + 3) % 94}%`,
       delay: `${(i * 1.3) % 15}s`,
       duration: `${18 + (i % 5) * 4}s`,
-      size: `${1.1 + (i % 4) * 0.4}rem`,
+      size: `${1.0 + (i % 4) * 0.35}rem`,
     }));
   }, []);
 
@@ -27,6 +49,8 @@ export default function FloatingNumbers() {
             animationDelay: item.delay,
             animationDuration: item.duration,
             fontSize: item.size,
+            opacity: 0.15,
+            fontFamily: 'var(--font-mono)',
           }}
         >
           {item.symbol}

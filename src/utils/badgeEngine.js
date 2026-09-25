@@ -1,51 +1,105 @@
 // src/utils/badgeEngine.js
-// Badge definitions and unlock triggers for MoneyQuest
+// Badge definitions and unlock triggers for ProgressionQuest: Mission Control Cadets
+// Defined per PRD §10 & TRD §7
 
 export const BADGES = [
-  { id: 'first_coin',       icon: '🏅', label: 'First Coin',       description: 'Answered your very first money question correctly!' },
-  { id: 'hot_streak',        icon: '🔥', label: 'Hot Streak',       description: 'Achieved a streak of 5 correct answers!' },
-  { id: 'super_streak',      icon: '⚡', label: 'Money Prodigy',    description: 'Achieved a 10-question winning streak!' },
-  { id: 'change_champ',      icon: '🧪', label: 'Lab Champion',     description: 'Completed all 4 interactive simulation stations!' },
-  { id: 'district_champ',    icon: '⭐', label: 'District Star',    description: 'Scored 3 stars in a Practice World!' },
-  { id: 'boss_slayer',       icon: '👑', label: 'Boss Slayer',      description: 'Defeated a World Boss in battle!' },
-  { id: 'century_scorer',    icon: '🎯', label: 'Centurion',        description: 'Answered over 20 questions in Practice!' },
-  { id: 'money_master',      icon: '🏆', label: 'Money Master',     description: 'Completed the full 5-phase MoneyQuest journey!' },
+  {
+    id: 'first_signal',
+    icon: '📡',
+    label: 'First Signal Locked',
+    description: 'Answered your first telemetry question correctly!',
+  },
+  {
+    id: 'steady_telemetry',
+    icon: '📈',
+    label: 'Steady Telemetry',
+    description: 'Maintained a 5-question consecutive telemetry streak!',
+  },
+  {
+    id: 'flight_streak',
+    icon: '🔥',
+    label: 'Flight-Ready Streak',
+    description: 'Achieved an incredible 10-answer telemetry streak!',
+  },
+  {
+    id: 'full_mission_kit',
+    icon: '🧰',
+    label: 'Full Mission Kit',
+    description: 'Completed all 4 required Mission Control simulation stations!',
+  },
+  {
+    id: 'checkpoint_cleared',
+    icon: '⭐',
+    label: 'Checkpoint Cleared',
+    description: 'Scored 3 stars in a Practice World!',
+  },
+  {
+    id: 'anomaly_resolved',
+    icon: '🛠️',
+    label: 'Anomaly Resolved',
+    description: 'Defeated a World Boss in battle and cleared the anomaly!',
+  },
+  {
+    id: 'veteran_cadet',
+    icon: '🎖️',
+    label: 'Veteran Cadet',
+    description: 'Answered 20 or more telemetry questions in Practice!',
+  },
+  {
+    id: 'mission_commander',
+    icon: '🚀',
+    label: 'Mission Commander Badge',
+    description: 'Completed the full 5-phase journey of ProgressionQuest!',
+  },
 ];
 
 export function checkBadges(state) {
   const unlocked = [];
 
-  // First correct answer
+  // 1. First correct answer
   const totalCorrect = state.districtCorrect?.reduce((s, c) => s + (c || 0), 0) || 0;
-  if (totalCorrect >= 1) unlocked.push('first_coin');
+  if (totalCorrect >= 1) unlocked.push('first_signal');
 
-  // Streak checks
-  if (state.maxStreak >= 5) unlocked.push('hot_streak');
-  if (state.maxStreak >= 10) unlocked.push('super_streak');
+  // 2. Streaks
+  if (state.maxStreak >= 5) unlocked.push('steady_telemetry');
+  if (state.maxStreak >= 10) unlocked.push('flight_streak');
 
-  // Simulation completion
-  if (state.simStationsComplete && state.simStationsComplete.every(Boolean)) {
-    unlocked.push('change_champ');
+  // 3. All 4 Simulate stations complete (scoped strictly to first 4 per TRD §1.4, §7)
+  if (
+    state.simStationsComplete &&
+    state.simStationsComplete.slice(0, 4).every(Boolean)
+  ) {
+    unlocked.push('full_mission_kit');
   }
 
-  // 3-star district check
-  if (state.districtScores && state.districtScores.some(score => score !== null && score >= 9)) {
-    unlocked.push('district_champ');
+  // 4. 3-star checkpoint cleared
+  if (
+    state.districtScores &&
+    state.districtScores.some((score) => score !== null && score >= 9)
+  ) {
+    unlocked.push('checkpoint_cleared');
   }
 
-  // Centurion
-  if (state.currentQuestion >= 20 || totalCorrect >= 20) {
-    unlocked.push('century_scorer');
-  }
-
-  // Boss slayer
+  // 5. Boss battle won
   if (state.bossDefeated) {
-    unlocked.push('boss_slayer');
+    unlocked.push('anomaly_resolved');
   }
 
-  // Full journey
-  if (state.phaseComplete && Object.values(state.phaseComplete).every(Boolean)) {
-    unlocked.push('money_master');
+  // 6. Veteran Cadet (20+ questions answered)
+  if (state.currentQuestion >= 20 || totalCorrect >= 20) {
+    unlocked.push('veteran_cadet');
+  }
+
+  // 7. Full 5-phase journey complete
+  if (
+    state.phaseComplete &&
+    state.phaseComplete.wonder &&
+    state.phaseComplete.story &&
+    state.phaseComplete.simulate &&
+    state.phaseComplete.play &&
+    state.phaseComplete.reflect
+  ) {
+    unlocked.push('mission_commander');
   }
 
   return unlocked;
