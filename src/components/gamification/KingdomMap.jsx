@@ -11,73 +11,94 @@ import { DISTRICTS } from '../../data/questionBank.js';
 function GoldenLockIcon() {
   return (
     <svg
-      width="38"
-      height="46"
-      viewBox="0 0 44 52"
+      width="34"
+      height="42"
+      viewBox="0 0 36 44"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       className="golden-lock-svg"
       aria-hidden="true"
     >
+      <defs>
+        <linearGradient id="shackleGrad" x1="10" y1="2" x2="26" y2="18" gradientUnits="userSpaceOnUse">
+          <stop stopColor="#f1f5f9" />
+          <stop offset="0.4" stopColor="#cbd5e1" />
+          <stop offset="0.75" stopColor="#94a3b8" />
+          <stop offset="1" stopColor="#64748b" />
+        </linearGradient>
+        <linearGradient id="goldBodyGrad" x1="3" y1="16" x2="33" y2="42" gradientUnits="userSpaceOnUse">
+          <stop stopColor="#fef08a" />
+          <stop offset="0.25" stopColor="#eab308" />
+          <stop offset="0.7" stopColor="#ca8a04" />
+          <stop offset="1" stopColor="#92400e" />
+        </linearGradient>
+      </defs>
       {/* Shackle */}
       <path
-        d="M12 21V13C12 7.47715 16.4772 3 22 3C27.5228 3 32 7.47715 32 13V21"
+        d="M11 17V10.5C11 6.35786 14.134 3 18 3C21.866 3 25 6.35786 25 10.5V17"
         stroke="url(#shackleGrad)"
-        strokeWidth="5"
+        strokeWidth="4"
         strokeLinecap="round"
       />
       {/* Lock Body */}
       <rect
         x="3"
-        y="19"
-        width="38"
-        height="31"
-        rx="7"
+        y="16"
+        width="30"
+        height="25"
+        rx="6"
         fill="url(#goldBodyGrad)"
-        stroke="#b45309"
-        strokeWidth="1.2"
+        stroke="#a16207"
+        strokeWidth="0.8"
       />
       {/* Keyhole */}
-      <circle cx="22" cy="32" r="3.2" fill="#451a03" />
-      <path d="M22 34V41" stroke="#451a03" strokeWidth="2.8" strokeLinecap="round" />
-
-      <defs>
-        <linearGradient id="shackleGrad" x1="12" y1="3" x2="32" y2="21" gradientUnits="userSpaceOnUse">
-          <stop stopColor="#e2e8f0" />
-          <stop offset="0.5" stopColor="#94a3b8" />
-          <stop offset="1" stopColor="#64748b" />
-        </linearGradient>
-        <linearGradient id="goldBodyGrad" x1="3" y1="19" x2="41" y2="50" gradientUnits="userSpaceOnUse">
-          <stop stopColor="#fde047" />
-          <stop offset="0.3" stopColor="#eab308" />
-          <stop offset="0.75" stopColor="#ca8a04" />
-          <stop offset="1" stopColor="#92400e" />
-        </linearGradient>
-      </defs>
+      <circle cx="18" cy="27" r="2.4" fill="#3b1d03" />
+      <path d="M18 28.5V34" stroke="#3b1d03" strokeWidth="2.2" strokeLinecap="round" />
     </svg>
   );
 }
 
-// Unlocked World SVG Icon (neon-styled like the bicycle in screenshot)
+// Unlocked World SVG Icon (neon-styled bicycle matching user screenshot)
 function WorldIcon({ idx, emoji }) {
   if (idx === 0) {
-    // Neon green launch vehicle / cycle line-art
+    // Crisp neon green bicycle line-art matching reference image exactly
     return (
       <svg
-        width="40"
-        height="32"
-        viewBox="0 0 24 24"
+        width="42"
+        height="30"
+        viewBox="0 0 34 24"
         fill="none"
         stroke="#4ade80"
-        strokeWidth="2.2"
+        strokeWidth="1.8"
         strokeLinecap="round"
         strokeLinejoin="round"
         className="neon-world-svg"
+        aria-hidden="true"
       >
-        <circle cx="5.5" cy="17.5" r="3.5" />
-        <circle cx="18.5" cy="17.5" r="3.5" />
-        <path d="M15 6a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-3 11.5L9 11l3-3 3 3-3 6.5z" />
-        <path d="M5.5 17.5l3.5-6.5h6l3.5 6.5" />
+        {/* Rear wheel */}
+        <circle cx="7" cy="16.5" r="5" />
+        <circle cx="7" cy="16.5" r="0.75" fill="#4ade80" />
+        {/* Front wheel */}
+        <circle cx="27" cy="16.5" r="5" />
+        <circle cx="27" cy="16.5" r="0.75" fill="#4ade80" />
+        {/* Crank / Pedals */}
+        <circle cx="16" cy="16.5" r="1.2" fill="#4ade80" />
+        {/* Chainstay */}
+        <line x1="7" y1="16.5" x2="16" y2="16.5" />
+        {/* Seatstay */}
+        <line x1="7" y1="16.5" x2="13" y2="7.5" />
+        {/* Seat tube */}
+        <line x1="16" y1="16.5" x2="13" y2="7.5" />
+        {/* Saddle */}
+        <line x1="10.5" y1="7.5" x2="15.5" y2="7.5" strokeWidth="2.4" />
+        {/* Down tube */}
+        <line x1="16" y1="16.5" x2="23" y2="9.5" />
+        {/* Top tube */}
+        <line x1="13" y1="9.5" x2="23" y2="9.5" />
+        {/* Fork & Stem */}
+        <line x1="27" y1="16.5" x2="23" y2="6.5" />
+        {/* Handlebars */}
+        <path d="M21 6.5h2.5c1 0 1.5.5 1.5 1.5" />
       </svg>
     );
   }
@@ -106,7 +127,7 @@ export default function KingdomMap({
       {/* Header row with Title, Subtitle, and Star pill */}
       <div className="worlds-header-row">
         <div className="worlds-header-left">
-          <h2 className="worlds-title">Arithmetic Progression Worlds</h2>
+          <h2 className="worlds-title">Arithmetic Progression Game Worlds</h2>
           <p className="worlds-subtitle">
             10 Themed Worlds · Need 4/10 Correct to Unlock Next World
           </p>
@@ -160,7 +181,7 @@ export default function KingdomMap({
               <div className="world-card-top">
                 <span className="world-w-tag">W{idx + 1}</span>
                 <span className="world-q-tag">
-                  Q{startQ}–{endQ}
+                  Q{startQ}-{endQ}
                 </span>
               </div>
 

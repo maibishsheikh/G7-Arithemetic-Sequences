@@ -3,51 +3,51 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
+  gap: 14px;
   max-width: 100%;
   box-sizing: border-box;
 }
 
 .progress-bar-pill {
-  background: rgba(20, 20, 45, 0.78);
-  padding: 8px 20px;
-  border-radius: 40px;
+  background: rgba(18, 16, 42, 0.88);
+  padding: 6px 18px;
+  border-radius: 999px;
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 12px;
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
   max-width: 100%;
   box-sizing: border-box;
 }
 
 .audio-btn {
-  width: 44px;
-  height: 44px;
-  min-width: 44px;
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
   border-radius: 50%;
-  background: rgba(20, 20, 45, 0.78);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  font-size: 1.25rem;
+  background: rgba(18, 16, 42, 0.88);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  font-size: 1.15rem;
   display: flex;
   align-items: center;
   justify-content: center;
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  transition: var(--transition);
-  color: var(--text-primary);
+  transition: all 0.2s ease;
+  color: #ffffff;
   cursor: pointer;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
   flex-shrink: 0;
   white-space: nowrap;
 }
 
 .audio-btn:hover {
-  background: rgba(255, 255, 255, 0.24);
-  border-color: var(--gold);
-  transform: scale(1.08);
+  background: rgba(30, 26, 68, 0.95);
+  border-color: rgba(255, 255, 255, 0.28);
+  transform: scale(1.06);
 }
 
 .audio-btn:active {
@@ -64,16 +64,16 @@
 }
 
 .step-circle {
-  width: 30px;
-  height: 30px;
-  min-width: 30px;
+  width: 26px;
+  height: 26px;
+  min-width: 26px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.88rem;
-  font-weight: 900;
-  color: #fff;
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: #ffffff;
   transition: all 0.2s ease;
   flex-shrink: 0;
 }
@@ -85,39 +85,40 @@
 }
 
 .circle-active {
-  background: #fbb03b;
+  background: #f59e0b;
   color: #18181b;
-  box-shadow: 0 0 12px rgba(251, 176, 59, 0.6);
+  box-shadow: 0 0 10px rgba(245, 158, 11, 0.5);
 }
 
 .circle-idle {
-  background: rgba(255, 255, 255, 0.15);
-  color: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.12);
+  color: #94a3b8;
 }
 
 .step-label {
-  font-family: 'Fredoka', 'Quicksand', sans-serif;
-  font-size: 1rem;
-  font-weight: 800;
-  color: #a0a0b8;
+  font-family: var(--font-display);
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: #94a3b8;
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 6px;
 }
 
 .step-item.active .step-label {
-  color: #fff;
-  font-weight: 900;
+  color: #ffffff;
+  font-weight: 800;
 }
 
 .step-item.completed .step-label {
-  color: #c0c0d8;
+  color: #ffffff;
+  font-weight: 700;
 }
 
 .step-divider {
-  color: #4a4a5e;
-  font-weight: 900;
-  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.2);
+  font-weight: 700;
+  font-size: 0.85rem;
 }
 
 @media (max-width: 768px) {
@@ -125,12 +126,12 @@
   .step-label { display: none; }
   .progress-bar-nav { gap: 6px; }
   .progress-bar-pill { gap: 4px; padding: 4px 8px; }
-  .step-circle { width: 26px; height: 26px; min-width: 26px; font-size: 0.76rem; }
+  .step-circle { width: 24px; height: 24px; min-width: 24px; font-size: 0.74rem; }
   .step-divider { font-size: 0.6rem; }
   .audio-btn {
-    width: 34px;
-    height: 34px;
-    min-width: 34px;
-    font-size: 1rem;
+    width: 32px;
+    height: 32px;
+    min-width: 32px;
+    font-size: 0.95rem;
   }
 }
