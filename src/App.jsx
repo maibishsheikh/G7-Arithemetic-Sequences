@@ -18,7 +18,7 @@ const initialState = {
   phase: 'intro',
   storyPanel: 0,
   currentSimStation: 0,
-  simStationsComplete: [false, false, false, false],
+  simStationsComplete: [false, false, false, false, false],
   questionSet: [],
   currentQuestion: 0,
   currentDistrict: 0,
@@ -57,7 +57,7 @@ function reducer(state, action) {
       return { ...state, storyPanel: state.storyPanel - 1 };
 
     case 'ADVANCE_SIM_STATION':
-      return { ...state, currentSimStation: Math.min(state.currentSimStation + 1, 3) };
+      return { ...state, currentSimStation: Math.min(state.currentSimStation + 1, 4) };
 
     case 'PREV_SIM_STATION':
       return { ...state, currentSimStation: Math.max(state.currentSimStation - 1, 0) };
@@ -65,11 +65,12 @@ function reducer(state, action) {
     case 'COMPLETE_SIM_STATION': {
       const sc = [...state.simStationsComplete];
       sc[action.payload] = true;
-      const allDone = sc.every(Boolean);
+      // Scoped strictly to the 4 required stations (0 to 3) per TRD §1.4 & §7
+      const reqDone = sc.slice(0, 4).every(Boolean);
       return {
         ...state,
         simStationsComplete: sc,
-        ...(allDone ? { phaseComplete: { ...state.phaseComplete, simulate: true } } : {}),
+        ...(reqDone ? { phaseComplete: { ...state.phaseComplete, simulate: true } } : {}),
       };
     }
 
