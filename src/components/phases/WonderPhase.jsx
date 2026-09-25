@@ -49,10 +49,12 @@ export default function WonderPhase({ state, dispatch }) {
       <div className="wonder-content anim-slide-up">
         {/* Main hook card */}
         <div className="wonder-card glass-card" style={{ borderColor: 'rgba(56, 189, 248, 0.35)' }}>
-          <div className="wonder-stadium-icon" aria-hidden="true">📡</div>
-          <h1 className="wonder-title headline" style={{ color: '#38bdf8' }}>
-            Mission Control Telemetry Alert!
-          </h1>
+          <div className="wonder-header-row">
+            <span className="wonder-stadium-icon" aria-hidden="true">📡</span>
+            <h1 className="wonder-title headline" style={{ color: '#38bdf8' }}>
+              Mission Control Telemetry Alert!
+            </h1>
+          </div>
 
           <div className="wonder-number-display" style={{ background: 'rgba(15, 23, 42, 0.75)' }}>
             <ProgressionVisual
@@ -60,6 +62,7 @@ export default function WonderPhase({ state, dispatch }) {
               data={{
                 terms: [14, 22, 30, 38, 46, '?'],
                 showDifference: true,
+                nowrap: true,
               }}
               compact={false}
             />
@@ -67,12 +70,9 @@ export default function WonderPhase({ state, dispatch }) {
 
           <div className="wonder-question-card">
             <p className="body-text wonder-q">
-              Mission Control just lost radar lock with <strong className="wonder-em" style={{ color: '#38bdf8' }}>Rocket Nova-7</strong> mid-ascent.
+              Radar lock with <strong className="wonder-em" style={{ color: '#38bdf8' }}>Rocket Nova-7</strong> was lost mid-ascent! First five altitudes arrived cleanly: <strong className="wonder-em" style={{ color: '#fbbf24' }}>14m, 22m, 30m, 38m, 46m</strong>... but <span className="wonder-highlight" style={{ color: '#f43f5e' }}>Checkpoint 6 is corrupted static!</span>
             </p>
-            <p className="body-text wonder-q">
-              The first five checkpoint altitudes arrived cleanly: <strong className="wonder-em" style={{ color: '#fbbf24' }}>14m, 22m, 30m, 38m, 46m</strong>... but <span className="wonder-highlight" style={{ color: '#f43f5e' }}>Checkpoint 6 is corrupted static!</span>
-            </p>
-            <p className="body-text wonder-q" style={{ marginTop: '8px', color: '#cbd5e1' }}>
+            <p className="body-text wonder-q" style={{ color: '#cbd5e1' }}>
               If the rocket's burn follows an authentic constant pattern, can you calculate the exact missing altitude and save the mission?
             </p>
           </div>

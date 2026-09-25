@@ -18,7 +18,7 @@ import {
 
 export default function PlayPhase({ state, dispatch }) {
   const { narrate, stopAll, sounds } = useAudio(state?.audioEnabled ?? true);
-  const [showMap, setShowMap]       = useState(state?.currentQuestion === 0);
+  const [showMap, setShowMap]       = useState(true);
   const [hintsShown, setHintsShown] = useState(0);
   const [showHint, setShowHint]     = useState(false);
   const [showBoss, setShowBoss]     = useState(false);

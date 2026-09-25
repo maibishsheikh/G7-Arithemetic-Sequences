@@ -33,18 +33,40 @@ export const DISTRICTS = WORLDS.map((w) => ({
 }));
 
 function makeOptions(correct, distractors) {
-  const uniqueDistractors = Array.from(new Set(distractors.map(String))).filter(
-    (d) => d !== String(correct)
-  );
-  const selected = uniqueDistractors.slice(0, 3);
-  while (selected.length < 3) {
-    const num = parseInt(correct, 10);
-    const fallback = isNaN(num) ? `Option ${selected.length + 2}` : String(num + (selected.length + 1) * 3);
-    if (!selected.includes(fallback) && fallback !== String(correct)) {
-      selected.push(fallback);
+  const correctStr = String(correct);
+  const seen = new Set([correctStr]);
+  const selected = [];
+
+  for (const d of distractors) {
+    const str = String(d);
+    if (!seen.has(str)) {
+      seen.add(str);
+      selected.push(str);
+      if (selected.length === 3) break;
     }
   }
-  return shuffle([String(correct), ...selected]);
+
+  let step = 1;
+  const num = parseInt(correctStr, 10);
+  while (selected.length < 3) {
+    let candidate;
+    if (isNaN(num)) {
+      candidate = `Choice ${String.fromCharCode(65 + selected.length + 1)}`;
+      if (seen.has(candidate)) {
+        candidate = `Option ${selected.length + step + 1}`;
+      }
+    } else {
+      const offset = (step % 2 === 1 ? Math.ceil(step / 2) : -Math.ceil(step / 2)) * 3;
+      candidate = String(num + offset);
+    }
+    step++;
+    if (!seen.has(candidate)) {
+      seen.add(candidate);
+      selected.push(candidate);
+    }
+  }
+
+  return shuffle([correctStr, ...selected]);
 }
 
 // ── WORLD 0: Define & Identify AP (first term a, common difference d) ───────

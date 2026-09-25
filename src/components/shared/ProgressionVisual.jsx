@@ -22,13 +22,15 @@ export default function ProgressionVisual({ type, data = {}, compact = false }) 
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          flexWrap: 'wrap',
-          gap: compact ? '4px' : '8px',
-          padding: compact ? '8px 4px' : '12px 8px',
+          flexWrap: data.nowrap ? 'nowrap' : 'wrap',
+          gap: compact ? '4px' : '6px',
+          padding: compact ? '6px 4px' : '8px 10px',
           background: 'rgba(15, 23, 42, 0.65)',
           borderRadius: '14px',
           border: '1px solid rgba(56, 189, 248, 0.2)',
-          margin: '6px 0',
+          margin: '4px 0',
+          maxWidth: '100%',
+          boxSizing: 'border-box',
         }}
       >
         {terms.map((val, idx) => {
@@ -66,10 +68,11 @@ export default function ProgressionVisual({ type, data = {}, compact = false }) 
                       : 'rgba(56, 189, 248, 0.4)'
                   }`,
                   borderRadius: '10px',
-                  padding: compact ? '4px 8px' : '6px 14px',
-                  minWidth: compact ? '48px' : '62px',
+                  padding: compact ? '4px 6px' : '5px 10px',
+                  minWidth: compact ? '44px' : '52px',
                   boxShadow: isHighlighted ? '0 0 16px rgba(251, 191, 36, 0.35)' : 'none',
                   transition: 'all 0.2s ease',
+                  flexShrink: 0,
                 }}
               >
                 <span
