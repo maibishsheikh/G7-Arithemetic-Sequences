@@ -1,6 +1,6 @@
 // src/utils/narration.js
-// Narration script builder for MoneyQuest
-// Strictly matches on-screen text 1:1
+// Narration script builder for ProgressionQuest: Mission Control Cadets
+// Compliant with PRD §11 & TRD §8 rules
 
 export const say       = (text) => ({ text, style: 'statement' });
 export const ask       = (text) => ({ text, style: 'question' });
@@ -12,40 +12,39 @@ export const encourage = (text) => ({ text, style: 'encouragement' });
 
 export function wonderNarration() {
   return [
-    say("Welcome to MoneyQuest! Let's investigate the big money mystery!"),
-    say("If Oliver has a shiny two-dollar coin, three twenty-cent coins, and one ten-cent coin… that makes two dollars and seventy cents in total."),
-    ask("Can he buy an eighty-five cent muffin and a fifty-cent pencil, and how much change will he get back?"),
-    cheer("Let's investigate how counting coins and making change works!"),
+    cheer("Mission Control Telemetry Alert! Cadet, we need your diagnostics."),
+    say("Rocket Nova-7 just sent five clean altitude readings: fourteen, twenty-two, thirty, thirty-eight, and forty-six meters."),
+    ask("Reading six is corrupted static! Can you calculate the exact missing altitude?"),
+    cheer("Let us investigate the flight data and unlock arithmetic sequences!"),
   ];
 }
 
 export function storyNarration(panel) {
   const scripts = [
+    // Panel 0: Signal Lost
     [
-      say("Oliver had been saving up all week by helping with chores at home."),
-      say("On Saturday morning, his mum smiled and handed him some pocket money — a shiny two-dollar coin, three twenty-cent coins, and one ten-cent coin."),
-      think("How much money do I have altogether? Oliver wondered, spreading the coins out on the table."),
-      say("He carefully added them up: two dollars, then sixty cents, then ten cents more."),
-      cheer("I have two dollars and seventy cents! he cheered proudly."),
+      say("Cadets Ishaan and Xin Yi just started their shift when Rocket Nova-7's telemetry stream flashed yellow."),
+      say("Checkpoints one through five arrived cleanly: fourteen, twenty-two, thirty, thirty-eight, and forty-six meters."),
+      think("Reading six is garbled in cosmic static. Can we calculate what it should be?"),
     ],
+    // Panel 1: Naming the Pattern
     [
-      say("At the school market, Oliver's eyes went wide at all the stalls."),
-      say("He spotted a delicious-looking muffin with a price tag that read eighty-five cents."),
-      ask("Do I have enough money to buy it? he asked nervously."),
-      say("Emma, who was helping at the stall, grinned. It's simple! Your twenty-cent coins and ten-cent coin make seventy cents. You need eighty-five cents, so you need fifteen cents more."),
-      cheer("You have two dollars and seventy cents in total, so you definitely have enough!"),
+      instruct("Hold your thrusters, warns Orbit the Mission Bot. Never check only the first gap!"),
+      say("In Mission Control, we verify every single consecutive gap to confirm a constant difference."),
+      emphasize("The starting altitude is the first term, a. The constant step is the common difference, d."),
+      cheer("Since every gap is plus eight, this is a genuine Arithmetic Progression!"),
     ],
+    // Panel 2: The Trajectory Formula
     [
-      say("Oliver decided to buy the muffin. He handed over his one-dollar coin."),
-      say("Emma smiled and opened the till. Your muffin costs eighty-five cents, and you gave me one dollar. So I need to give you back the difference!"),
-      say("She counted carefully and placed one ten-cent coin and one five-cent coin into Oliver's palm."),
-      cheer("That's fifteen cents change! Penny the Piggy Bank bounced excitedly. Change is the money you get back when you pay MORE than the price! One dollar minus eighty-five cents equals fifteen cents."),
+      say("Ishaan reveals the shortcut: the n-th term equals the first term, plus, n minus one, groups of the common difference!"),
+      instruct("Notice that when a rocket descends, the common difference is a negative number."),
+      say("A descent with first term fifty and a common difference of negative six decreases cleanly: fifty, forty-four, thirty-eight."),
     ],
+    // Panel 3: Reading Six, Recovered
     [
-      say("By the end of the market day, Oliver had bought a muffin for eighty-five cents, a pencil for fifty cents, and a sticker pack for one dollar and twenty cents."),
-      say("He spent two dollars and fifty-five cents in total! Starting with two dollars and seventy cents, he had fifteen cents left over."),
-      say("I can add and subtract money just like regular numbers, Oliver said happily."),
-      cheer("Emma high-fived him. You're a money master now, Oliver! Penny jingled with joy."),
+      cheer("Let us compute Checkpoint six! The first term is fourteen, common difference is eight, and position is six."),
+      say("Fourteen plus five groups of eight equals fourteen plus forty, giving fifty-four meters!"),
+      cheer("Radar confirms fifty-four meters exact! Welcome to the Flight Deck, Cadets!"),
     ],
   ];
 
@@ -54,87 +53,80 @@ export function storyNarration(panel) {
 
 export function simStationIntro(stationIdx) {
   const intros = [
+    // Station 0: Telemetry Tower Lab
     [
-      instruct("Welcome to Station A — Coin Counter and Register Lab!"),
-      instruct("Tap the coins in the tray to build the exact target amount shown. Tap any coin in your purse to remove it. Try using the fewest coins possible!"),
+      instruct("Welcome to Station One — Telemetry Tower Lab!"),
+      instruct("Tune the first term, a, and common difference, d. Explore five distinct combinations to unlock clearance!"),
     ],
+    // Station 1: Checkpoint Calibration
     [
-      instruct("Welcome to Station B — Supermarket Scanner and Price Matcher!"),
-      instruct("Scan items on the market conveyor, see the prices print on your receipt, and solve the shopping budget challenges!"),
+      instruct("Welcome to Station Two — Checkpoint Calibration!"),
+      instruct("Calibrate initial altitude and burn rate to hit the target checkpoint reading across three escalating rounds."),
     ],
+    // Station 2: Mission Control Console
     [
-      instruct("Welcome to Station C — The Cashier Change Maker!"),
-      instruct("You are the shopkeeper! A customer buys an item and pays with a larger coin or note. Calculate the change and dispense the exact coins from the till drawer!"),
+      instruct("Welcome to Station Three — Mission Control Console!"),
+      instruct("Work through four chained stages: verify the gap rate, solve for the first term, predict Checkpoint twelve, and confirm total fuel burn."),
     ],
+    // Station 3: Anomaly Detective
     [
-      instruct("Welcome to Station D — Receipt Detective!"),
-      instruct("Detective Penny has found receipts with change calculation errors. Inspect the receipt, spot the mistake, and fix the amount!"),
+      instruct("Welcome to Station Four — Anomaly in the Data Feed!"),
+      instruct("Inspect the telemetry stream, click the corrupted checkpoint, and enter the correct reading to restore radar lock."),
+    ],
+    // Station 4: Sandbox
+    [
+      cheer("Welcome to the Mission Simulator Sandbox!"),
+      instruct("Freely tune your flight parameters, launch rocket burns, and observe total trajectory statistics."),
     ],
   ];
 
   return intros[stationIdx] || intros[0];
 }
 
-export function playQuestionNarration(questionText) {
-  return [
-    ask(questionText)
-  ];
+export function simRoundIntro(stationIdx, roundIdx) {
+  return [instruct(`Starting diagnostic round ${roundIdx + 1}! Check the telemetry readings carefully.`)];
 }
 
-export function playCorrectNarration(streak = 1) {
-  if (streak >= 5) {
-    return [cheer("Incredible streak! You are unstoppable! 🔥")];
-  }
-  if (streak >= 3) {
-    return [cheer("Awesome! Three in a row! ⭐")];
-  }
-  return [cheer("Spot on! That's correct! 🎉")];
+export function simStepComplete(stationIdx, stepIdx) {
+  return [cheer(`Stage ${stepIdx + 1} locked and verified! Trajectory data feeding into next stage.`)];
+}
+
+export function playQuestionNarration(questionText) {
+  return [say(questionText)];
+}
+
+export function playCorrectNarration(streak) {
+  if (streak >= 10) return [cheer("Outstanding! Ten in a row, cadet! Your telemetry instincts are unmatched!")];
+  if (streak >= 5)  return [cheer("Five streak locked! Steady telemetry stream maintainer!")];
+  if (streak >= 3)  return [cheer("Three in a row! Excellent precision!")];
+  return [cheer("Spot on! Checkpoint verified!")];
 }
 
 export function playWrongNarration() {
-  return [
-    think("Not quite — check the hint, count the coins carefully, and try again! 💡")
-  ];
+  return [encourage("Signal glitch! Review the common difference formula and check every gap carefully.")];
 }
 
 export function playHint1Narration() {
-  return [
-    encourage("Here's your first hint! Look at the biggest coins or dollars first.")
-  ];
+  return [think("Mission advisory: Check the first term a and the gap between consecutive readings.")];
 }
 
 export function playHint2Narration() {
-  return [
-    encourage("Here's your final clue! Break down the dollars and cents step by step.")
-  ];
+  return [think("Flight computer hint: Use the formula: the n-th term equals the first term plus n minus one times d.")];
 }
 
 export function districtCompleteNarration() {
-  return [
-    cheer("World Complete! Spectacular job on this money district! 🌟")
-  ];
-}
-
-export function bossStartNarration() {
-  return [
-    emphasize("The Boss Battle begins! Answer correctly to defeat the boss and claim your badge!")
-  ];
-}
-
-export function bossWinNarration() {
-  return [
-    cheer("Victory! You defeated the boss and claimed the World Badge! 👑")
-  ];
+  return [cheer("World mission sector cleared! You have unlocked a new telemetry star!")];
 }
 
 export function reflectNarration() {
   return [
-    say("Welcome to the Reflect Phase! Let's review the key money concepts and check your scorecard! 📓")
+    instruct("Welcome to the Flight Integrity Review debriefing."),
+    say("Review the core mathematical habits: check every gap, and remember that common differences can be negative."),
   ];
 }
 
 export function reflectCompleteNarration() {
   return [
-    cheer("Outstanding! You have mastered money, coins, notes, and making change! You are a true Money Master! 🏆")
+    cheer("Mission accomplished, Cadet! You have achieved complete Mastery of Arithmetic Sequences!"),
   ];
 }
