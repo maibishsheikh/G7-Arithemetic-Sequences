@@ -1,16 +1,18 @@
 // src/components/IntroScreen.jsx
 // IntroScreen for ProgressionQuest: Mission Control Cadets (Grade 7 Arithmetic Sequences)
+// Strictly structured to match reference UI/UX layout and formatting
+
 import React from 'react';
 import './IntroScreen.css';
 import { generateSessionQuestions } from '../utils/shuffle.js';
 import questionBank from '../data/questionBank.js';
 
 const JOURNEY = [
-  { num: '01', icon: '📡', label: 'Wonder',   desc: 'Telemetry signal alert' },
+  { num: '01', icon: '🔍', label: 'Wonder',   desc: 'Telemetry signal alert' },
   { num: '02', icon: '📖', label: 'Story',    desc: 'Ishaan, Xin Yi & Orbit' },
   { num: '03', icon: '🧪', label: 'Simulate', desc: '4 mission stations + sandbox' },
-  { num: '04', icon: '🎮', label: 'Practice', desc: '10 worlds & boss battles' },
-  { num: '05', icon: '📓', label: 'Reflect',  desc: 'Flight review & scorecard' },
+  { num: '04', icon: '🎮', label: 'Practice', desc: '10 worlds & bosses' },
+  { num: '05', icon: '📓', label: 'Reflect',  desc: 'Review & scorecard' },
 ];
 
 export default function IntroScreen({ state, dispatch }) {
@@ -29,7 +31,7 @@ export default function IntroScreen({ state, dispatch }) {
     <div className="intro-wrap">
       {/* Top Badge */}
       <div className="intro-top-badge">
-        🚀 Grade 7 / Secondary 1 · Arithmetic Sequences &amp; Telemetry Simulation
+        ✨ Curriculum · Arithmetic Progression &amp; Sequences Grade 7 / Secondary 1
       </div>
 
       {/* Main Title */}
@@ -38,15 +40,15 @@ export default function IntroScreen({ state, dispatch }) {
         <span className="text-white">Quest</span>
       </h1>
       <h2 className="intro-subtitle">
-        Mission Control Cadets · Master First Terms (a), Common Differences (d), and Trajectory Formulas
+        ProgressionQuest · Master First Terms (a), Common Differences (d), and Trajectory Formulas
       </h2>
 
       {/* Mascot Row */}
       <div className="intro-mascot-row">
-        <div className="intro-mascot-circle" style={{ borderColor: '#38bdf8' }}>🤖</div>
-        <div className="intro-speech-bubble" style={{ borderLeftColor: '#38bdf8' }}>
-          Greetings Cadet! I'm Orbit the Mission Bot. Rocket Nova-7 is ascending, but Checkpoint 6 is corrupted.
-          Ready to diagnose flight telemetry and calibrate trajectories? 🚀📡
+        <div className="intro-mascot-circle">🤖</div>
+        <div className="intro-speech-bubble">
+          Hi! I'm Orbit. Rocket Nova-7's telemetry stream is corrupted!<br />
+          Ready to diagnose flight signals, find common differences, and calibrate trajectories? 🚀📡
         </div>
       </div>
 
@@ -58,7 +60,7 @@ export default function IntroScreen({ state, dispatch }) {
 
       {/* Journey Card */}
       <div className="journey-card">
-        <div className="journey-card-title">YOUR MISSION TIMELINE · CLICK ANY PHASE TO LAUNCH</div>
+        <div className="journey-card-title">YOUR LEARNING JOURNEY · CLICK ANY PHASE TO START</div>
 
         <div className="journey-steps-container">
           <div className="journey-row top-row">
@@ -66,10 +68,15 @@ export default function IntroScreen({ state, dispatch }) {
               <React.Fragment key={j.num}>
                 <div
                   className="journey-step-item clickable-step"
-                  onClick={() => dispatch({ type: 'SET_PHASE', payload: j.label.toLowerCase() === 'practice' ? 'play' : j.label.toLowerCase() })}
+                  onClick={() =>
+                    dispatch({
+                      type: 'SET_PHASE',
+                      payload: j.label.toLowerCase() === 'practice' ? 'play' : j.label.toLowerCase(),
+                    })
+                  }
                   role="button"
                   tabIndex={0}
-                  title={`Launch ${j.label} phase`}
+                  title={`Click to open ${j.label} phase`}
                 >
                   <span className="journey-icon-circle">{j.icon}</span>
                   <div className="journey-text-col">
@@ -87,10 +94,15 @@ export default function IntroScreen({ state, dispatch }) {
               <React.Fragment key={j.num}>
                 <div
                   className="journey-step-item clickable-step"
-                  onClick={() => dispatch({ type: 'SET_PHASE', payload: j.label.toLowerCase() === 'practice' ? 'play' : j.label.toLowerCase() })}
+                  onClick={() =>
+                    dispatch({
+                      type: 'SET_PHASE',
+                      payload: j.label.toLowerCase() === 'practice' ? 'play' : j.label.toLowerCase(),
+                    })
+                  }
                   role="button"
                   tabIndex={0}
-                  title={`Launch ${j.label} phase`}
+                  title={`Click to open ${j.label} phase`}
                 >
                   <span className="journey-icon-circle">{j.icon}</span>
                   <div className="journey-text-col">
@@ -105,22 +117,32 @@ export default function IntroScreen({ state, dispatch }) {
         </div>
       </div>
 
-      {/* Action Buttons */}
-      <div className="intro-actions-row">
-        {hasSaved ? (
-          <>
-            <button className="btn btn-primary btn-lg" onClick={resumeSession}>
-              ▶ Resume Mission
-            </button>
-            <button className="btn btn-outline btn-lg" onClick={startFresh}>
-              🔄 New Mission
-            </button>
-          </>
-        ) : (
-          <button className="btn btn-primary btn-lg" onClick={startFresh} style={{ boxShadow: '0 0 24px rgba(56, 189, 248, 0.4)' }}>
-            Launch Mission Control 🚀
+      {/* Actions */}
+      <div className="intro-ctas">
+        <button className="btn btn-primary btn-lg intro-cta-main" onClick={startFresh}>
+          🚀 Begin Your Journey!
+        </button>
+        {hasSaved && (
+          <button className="btn btn-outline" onClick={resumeSession} style={{ marginTop: '10px' }}>
+            ↩ Resume Session
           </button>
         )}
+      </div>
+
+      {/* Bottom Cards */}
+      <div className="intro-bottom-cards">
+        <div className="bottom-card">
+          <div className="bottom-card-icon" style={{ color: '#ff6b6b' }}>🎯</div>
+          <div>100 Questions</div>
+        </div>
+        <div className="bottom-card">
+          <div className="bottom-card-icon" style={{ color: '#38bdf8' }}>📡</div>
+          <div>Telemetry &amp; AP</div>
+        </div>
+        <div className="bottom-card">
+          <div className="bottom-card-icon" style={{ color: '#66bb6a' }}>✨</div>
+          <div>Badges &amp; XP</div>
+        </div>
       </div>
     </div>
   );

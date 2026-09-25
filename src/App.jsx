@@ -168,6 +168,19 @@ function reducer(state, action) {
       };
     }
 
+    case 'SET_DISTRICT': {
+      const dist = Math.max(0, Math.min(action.payload, 9));
+      return {
+        ...state,
+        currentDistrict: dist,
+        currentQuestion: dist * 10,
+        hintsUsed: 0,
+        attemptCount: 0,
+        showFeedback: null,
+        feedbackMsg: '',
+      };
+    }
+
     case 'UNLOCK_BADGE': {
       if (state.badges.includes(action.payload)) return state;
       return { ...state, badges: [...state.badges, action.payload] };

@@ -1,133 +1,260 @@
 /* src/components/gamification/KingdomMap.css */
-.kingdom-grid {
+/* Practice Phase World Map matching user reference screenshot */
+
+.worlds-container {
+  width: 100%;
+  max-width: 960px;
+  margin: 10px auto;
+  padding: 24px 28px 30px;
+  box-sizing: border-box;
+  background: rgba(14, 16, 38, 0.78);
+  border: 1.5px solid rgba(255, 255, 255, 0.1);
+  border-radius: 24px;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Glowing green capsule indicator at top center */
+.worlds-accent-bar {
+  width: 64px;
+  height: 5px;
+  background: #22c55e;
+  border-radius: 999px;
+  box-shadow: 0 0 14px #22c55e, 0 0 24px rgba(34, 197, 94, 0.5);
+  margin: 0 auto 18px;
+}
+
+/* Header row */
+.worlds-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.worlds-header-left {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.worlds-title {
+  color: #5eead4;
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 2.2vw, 1.85rem);
+  font-weight: 800;
+  margin: 0;
+  letter-spacing: -0.3px;
+}
+
+.worlds-subtitle {
+  color: #94a3b8;
+  font-family: var(--font-body);
+  font-size: clamp(0.85rem, 1.2vw, 0.95rem);
+  font-weight: 600;
+  margin: 0;
+}
+
+/* Star counter pill */
+.worlds-star-pill {
+  background: rgba(15, 23, 42, 0.75);
+  border: 1.5px solid rgba(234, 179, 8, 0.4);
+  border-radius: 999px;
+  padding: 6px 16px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.worlds-star-pill .star-icon {
+  font-size: 1rem;
+}
+
+.worlds-star-pill .star-text {
+  color: #facc15;
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+}
+
+/* 2x5 Grid */
+.worlds-grid {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 14px;
   width: 100%;
-  max-width: 900px;
-  margin: 14px auto;
-  box-sizing: border-box;
 }
 
-.kingdom-district-card {
-  background: rgba(255, 255, 255, 0.07);
-  border: 1.5px solid rgba(255, 255, 255, 0.16);
-  border-radius: 16px;
-  padding: 14px 10px;
+/* Individual World Card */
+.world-card {
+  background: rgba(18, 20, 44, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  padding: 12px 10px 10px;
+  min-height: 140px;
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   align-items: center;
   text-align: center;
-  gap: 8px;
   cursor: pointer;
-  transition: var(--transition-fast);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   user-select: none;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+  position: relative;
 }
 
-.kingdom-district-card:hover:not(.locked) {
+.world-card:hover:not(.locked) {
   transform: translateY(-3px);
-  border-color: var(--gold);
-  background: rgba(255, 179, 0, 0.18);
-  box-shadow: 0 8px 20px rgba(255, 179, 0, 0.35);
+  background: rgba(28, 32, 68, 0.8);
+  border-color: rgba(94, 234, 212, 0.4);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
 }
 
-.kingdom-district-card.current {
-  border-color: var(--gold);
-  background: rgba(255, 179, 0, 0.22);
-  box-shadow: 0 0 16px rgba(255, 179, 0, 0.5);
+/* Active / Current Card (Matches W1 in screenshot) */
+.world-card.active {
+  border: 1.5px solid #2dd4bf;
+  background: rgba(22, 28, 56, 0.85);
+  box-shadow: 0 0 18px rgba(45, 212, 191, 0.35), inset 0 0 10px rgba(45, 212, 191, 0.08);
 }
 
-.kingdom-district-card.completed {
-  border-color: rgba(34, 197, 94, 0.5);
-  background: rgba(34, 197, 94, 0.12);
-}
-
-.kingdom-district-card.locked {
-  opacity: 0.45;
+/* Locked Card */
+.world-card.locked {
   cursor: not-allowed;
-  filter: grayscale(0.5);
+  opacity: 0.85;
 }
 
-.district-icon-wrap {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.12);
+.world-card.locked:hover {
+  transform: none;
+}
+
+/* Top Row: W# on left, Q#-# on right */
+.world-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 0 2px;
+}
+
+.world-w-tag {
+  color: #94a3b8;
+  font-family: var(--font-display);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.world-q-tag {
+  color: #2dd4bf;
+  font-family: var(--font-display);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+}
+
+/* Center Icon Wrap */
+.world-card-icon-wrap {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.8rem;
-}
-
-.district-info {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 3px;
+  height: 52px;
   width: 100%;
+  margin: 6px 0 4px;
 }
 
-.district-num {
-  font-family: var(--font-body);
-  font-size: 0.82rem;
-  font-weight: 800;
-  color: var(--text-muted);
-  text-transform: uppercase;
+.golden-lock-svg {
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.45));
+  transition: transform 0.2s ease;
 }
 
-.district-name {
+.world-card.locked:hover .golden-lock-svg {
+  transform: scale(1.04);
+}
+
+.neon-world-svg {
+  filter: drop-shadow(0 0 8px rgba(74, 222, 128, 0.75));
+  transition: transform 0.2s ease;
+}
+
+.world-card:hover .neon-world-svg {
+  transform: scale(1.08);
+}
+
+.world-emoji-icon {
+  font-size: 2rem;
+  line-height: 1;
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.3));
+}
+
+/* World Name */
+.world-card-name {
+  color: #f1f5f9;
   font-family: var(--font-display);
-  font-weight: 900;
-  font-size: 1rem;
-  color: #ffffff;
+  font-size: 0.85rem;
+  font-weight: 700;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   max-width: 100%;
+  padding: 0 2px;
 }
 
-.district-score-row {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  margin-top: 2px;
+/* Status at Bottom */
+.world-card-status {
+  margin-top: 4px;
 }
 
-.district-score-fraction {
-  font-size: 0.85rem;
-  font-weight: 900;
-  color: #86efac;
+.world-play-btn {
+  color: #2dd4bf;
+  font-family: var(--font-display);
+  font-size: 0.84rem;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  transition: color 0.15s ease;
 }
 
-.district-status {
-  font-size: 0.82rem;
-  font-weight: 800;
-  color: var(--text-muted);
+.world-card:hover .world-play-btn {
+  color: #5eead4;
+  text-shadow: 0 0 8px rgba(94, 234, 212, 0.6);
 }
 
-.district-status.active-status {
-  color: var(--gold);
-  font-weight: 900;
+.world-locked-text {
+  color: #64748b;
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 600;
 }
 
-@media (max-width: 768px) {
-  .kingdom-grid {
+.world-stars-earned {
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 860px) {
+  .worlds-grid {
     grid-template-columns: repeat(3, 1fr);
   }
 }
 
-@media (max-width: 480px) {
-  .kingdom-grid {
+@media (max-width: 540px) {
+  .worlds-container {
+    padding: 16px 14px 20px;
+    border-radius: 18px;
+  }
+  .worlds-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 8px;
+    gap: 10px;
   }
-  .kingdom-district-card {
-    padding: 10px 8px;
-  }
-  .district-icon-wrap {
-    width: 40px;
-    height: 40px;
-    font-size: 1.4rem;
+  .world-card {
+    min-height: 125px;
+    padding: 10px 8px 8px;
   }
 }
